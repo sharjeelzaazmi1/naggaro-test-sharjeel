@@ -2,7 +2,6 @@ package com.naggaro.javatest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author sharjeel.mehmood
@@ -10,10 +9,10 @@ import org.springframework.context.annotation.ComponentScan;
  * @since v1.0
  */
 @SpringBootApplication
-public class JavaskeltonApplication {
+public class NagarroSharjeelTestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JavaskeltonApplication.class, args);
+        SpringApplication.run(NagarroSharjeelTestApplication.class, args);
     }
 
 }
