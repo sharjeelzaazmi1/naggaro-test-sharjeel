@@ -1,4 +1,4 @@
-package com.naggaro.javatest.Utils;
+package com.naggaro.javatest.utils;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,7 +25,9 @@ public class LoggingAspect {
 
     @Before("within(com.naggaro.javatest.controllers..*)")
     public void endpointBefore(JoinPoint p) {
-            log.info(p.getTarget().getClass().getSimpleName() + " " + p.getSignature().getName() + " START");
+            log.error("{} {} {}", p.getTarget().getClass().getSimpleName(), p.getSignature().getName(),
+                "START");
+
             Object[] signatureArgs = p.getArgs();
 
 
@@ -34,9 +36,11 @@ public class LoggingAspect {
             try {
 
                 if (signatureArgs[0] != null) {
-                    log.info("\nRequest object: \n" + mapper.writeValueAsString(signatureArgs[0]));
+
+                    log.info("Request object:{} " , mapper.writeValueAsString(signatureArgs[0]));
                 }
             } catch (JsonProcessingException e) {
+                log.error("Error while json process of request: " ,e);
             }
     }
 
@@ -47,11 +51,12 @@ public class LoggingAspect {
             ObjectMapper mapper = new ObjectMapper();
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
             try {
-                log.info("\nResponse object: \n" + mapper.writeValueAsString(returnValue));
+                log.info("Response object:  {}" , mapper.writeValueAsString(returnValue));
             } catch (JsonProcessingException e) {
-                System.out.println(e.getMessage());
+                log.error("Error while processing json response: {}" ,e.getMessage(),e);
             }
-            log.info(p.getTarget().getClass().getSimpleName() + " " + p.getSignature().getName() + " END");
+            log.error("{} {} {}", p.getTarget().getClass().getSimpleName(), p.getSignature().getName(),
+                "END");
 
     }
 

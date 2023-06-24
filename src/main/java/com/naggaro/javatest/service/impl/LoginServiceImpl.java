@@ -1,6 +1,6 @@
 package com.naggaro.javatest.service.impl;
 
-import com.naggaro.javatest.Utils.StringUtils;
+import com.naggaro.javatest.utils.StringUtils;
 import com.naggaro.javatest.constants.NaggaroConstants;
 import com.naggaro.javatest.dto.GenericResponseDto;
 import com.naggaro.javatest.dto.UserSessionDto;
@@ -21,14 +21,16 @@ import java.util.Date;
 @Service
 public class LoginServiceImpl implements LoginService {
 
+
+
     @Override
     public GenericResponseDto<String> authenticateUser(ServletRequest request )  {
         HttpServletRequest req = (HttpServletRequest) request;
 
-        String password = req.getHeader("Authorization");
+        String pass = req.getHeader("Authorization");
         String clientId = req.getHeader("ClientId");
 
-        if(clientId== null  || password==null)
+        if(clientId== null  || pass==null)
         {
             throw new UnAutherizeException(NaggaroConstants.INVALID_TOKEN);
         }
@@ -43,9 +45,9 @@ public class LoginServiceImpl implements LoginService {
             throw new UnAutherizeException(NaggaroConstants.USER_ALREADY_LOGGEDIN);
 
         }
-        if((clientId.equalsIgnoreCase("admin") && password.equals("admin"))
+        if((clientId.equalsIgnoreCase(NaggaroConstants.ADMIN_USER_NAME) && pass.equals(NaggaroConstants.ADMIN_PASS))
                 ||
-                (clientId.equalsIgnoreCase("user") && password.equals("user")))
+                (clientId.equalsIgnoreCase(NaggaroConstants.USER_NAME) && pass.equals(NaggaroConstants.USER_PASS)))
 
         {
             StringUtils token = new StringUtils();

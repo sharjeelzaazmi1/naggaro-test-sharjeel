@@ -24,5 +24,6 @@ public class ErrorDto {
         this.message = message;
         this.path = path;
         this.timestamp = new Date();
+        this.status=status;
     }
 }

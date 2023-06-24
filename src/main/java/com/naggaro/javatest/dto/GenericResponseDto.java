@@ -16,14 +16,14 @@ public class GenericResponseDto<T>{
     private T body;
 
     public static <T> GenericResponseDto<T> newSuccessInstance(T body) {
-        GenericResponseDto<T> genericDTO = new GenericResponseDto();
+        GenericResponseDto<T> genericDTO = new GenericResponseDto<T>();
         genericDTO.setResposneCode("00");
         genericDTO.setDescription("Operation Success");
         genericDTO.setBody( body);
         return genericDTO;
     }
     public static <T> GenericResponseDto<T> newFailedInstance(T body) {
-        GenericResponseDto<T> genericDTO = new GenericResponseDto();
+        GenericResponseDto<T> genericDTO = new GenericResponseDto<T>();
         genericDTO.setResposneCode("02");
         genericDTO.setDescription("Operation Failed");
         genericDTO.setBody(body);

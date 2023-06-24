@@ -28,18 +28,10 @@ public class AuthFilter implements Filter {
 
 
     public  static HashMap<String, UserSessionDto> loginSessions = new HashMap<>();
-    private void init(){
 
-    }
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        init();
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
@@ -75,9 +67,5 @@ public class AuthFilter implements Filter {
         chain.doFilter(request, response);
     }
 
-    @Override
-    public void destroy() {
-
-    }
 
 }

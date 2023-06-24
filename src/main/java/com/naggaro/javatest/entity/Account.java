@@ -1,6 +1,6 @@
 package com.naggaro.javatest.entity;
 
-import com.naggaro.javatest.Utils.StringUtils;
+import com.naggaro.javatest.utils.StringUtils;
 import lombok.Getter;
 import lombok.Setter;
 

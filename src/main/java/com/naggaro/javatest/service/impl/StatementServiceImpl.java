@@ -6,6 +6,8 @@ import com.naggaro.javatest.entity.Statement;
 import com.naggaro.javatest.exception.UnAutherizeException;
 import com.naggaro.javatest.repository.StatementRepository;
 import com.naggaro.javatest.service.StatementService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,8 @@ import java.util.*;
  */
 @Service
 public class StatementServiceImpl implements StatementService {
+
+    private final Logger logger = LoggerFactory.getLogger(StatementServiceImpl.class);
 
     @Autowired
     public StatementRepository statementRepository;
@@ -49,12 +53,12 @@ public class StatementServiceImpl implements StatementService {
         {
             return response;
         }
-        return null;
+        return new ArrayList<Statement>();
     }
 
 
     private Specification getSpecification(RequestDto requestDto,Boolean isAdmin)  {
-        Specification specification = (Specification<Statement>) (root, query, criteriaBuilder) -> {
+        return (Specification<Statement>) (root, query, criteriaBuilder) -> {
 
 
             List<Predicate> predicates  = getUserPredicates(requestDto,criteriaBuilder,root,isAdmin);
@@ -65,7 +69,7 @@ public class StatementServiceImpl implements StatementService {
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
 
-        return specification;
+
     }
     public List<Predicate> getUserPredicates(RequestDto requestDto, CriteriaBuilder criteriaBuilder, Root<Statement> root,Boolean isAdmin)  {
 
@@ -124,8 +128,8 @@ public class StatementServiceImpl implements StatementService {
             predicates.add(date);
 
         } catch (ParseException e) {
-//                logger.error("Error while parsing toData and fromDate ",e);
-            System.out.println(e.getMessage());
+                logger.error("Error while parsing toData and fromDate ",e);
+
         }
     }
 

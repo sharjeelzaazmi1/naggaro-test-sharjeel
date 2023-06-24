@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
 /**
@@ -46,7 +45,8 @@ public class ExceptionHandlingControllerAdvice {
         HttpHeaders headers = new HttpHeaders();
         HttpStatus status = HttpStatus.UNAUTHORIZED;
 
-       // logger.error("Error while handling request " + req.getServletPath() ,ex);
+        logger.error(ex.getMessage(),ex);
+
         return handleExceptionInternal(ex, new ErrorDto(status.value(),"Internal Server Error", ex.getMessage(),req.getServletPath()),headers, status, req);
     }
 

@@ -9,6 +9,16 @@ package com.naggaro.javatest.constants;
 
 public class NaggaroConstants {
 
+    private NaggaroConstants()
+    {
+
+    }
+
+    public static final String ADMIN_USER_NAME="admin";
+    public static final String ADMIN_PASS ="admin";
+    public static final String USER_NAME="user";
+    public static final String USER_PASS ="user";
+
     //2023-04-26 18:50:43
     public static final String DATE_TIME_FORMATE="yyyy-MM-dd hh:mm:ss";
 
