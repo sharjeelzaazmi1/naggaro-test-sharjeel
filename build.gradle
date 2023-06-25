@@ -25,6 +25,7 @@ dependencies {
     
 //    runtimeOnly group: 'org.sonarsource.scanner.gradle', name: 'sonarqube-gradle-plugin', version: '3.3'
 
+    implementation 'net.sf.ucanaccess:ucanaccess:4.0.1'
 
 }
 
